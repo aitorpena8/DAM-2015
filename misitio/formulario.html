@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <meta charset="UTF-8" />
+        <title>Rellena tu CV</title>
+
+    </head>
+
+    <body>
+        <h1>Rellena tu CV</h1>
+
+
+
+           <form action="#" method="post">
+               <p> Nombre</p>
+               <p><input type="text" name="nombre"/></p>
+               <p>  Apellidos </p>
+               <p><input type="text" name="apellidos"/></p>
+               <p> Contraseña</p>
+               <p><input type="password" name="contrasena"/></p>
+               <p>DNI</p>
+               <p><input type="text" name="dni"/></p>
+
+               <p> Sexo</p>
+               <p><input type="radio" name="sexo" value="Hombre" checked/> Hombre</p>
+               <p><input type="radio" name="sexo" value="Mujer"/>Mujer</p>
+
+               <p>Incluir mi foto <input type="file" name="foto"/> nada seleccionado</p>
+
+               <textarea rows="6" cols="50">
+               </textarea>
+               <p>  <input type="checkbox" name="suscribirme" checked/> Suscribirme al boletin de novedades</p>
+               <input type="submit" name="guardar" value="Guardar Cambios"/>
+               <input type="reset" name="borrar" value="Borrar los datos introducidos"/>
+           </form>
+
+
+    </body>
+
+</html>
