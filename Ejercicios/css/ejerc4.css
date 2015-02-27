@@ -1,0 +1,52 @@
+body {
+    background-color: #f3b976;
+}
+
+h1 {
+    font-family: Arial;
+    text-transform:uppercase;
+    color: white;
+    text-align: center;
+}
+
+cite {
+    display: block;
+    text-align: right;
+    width: 95%;
+    padding-left: 1%;
+}
+
+div.chiste {
+    width: 90%;
+    margin: 20px auto;
+    padding: 5px 8px;
+    line-height: 0.8em;
+}
+
+.gris1 {
+    background-color: #B9BDBA;
+    border: 5px dotted #8E918F;
+}
+
+
+
+.gris {
+    background-color: #B9BDBA;
+    border: 5px double  #8E918F;
+}
+
+.amarillo {
+    background-color: #f9f893;
+    border: 5px solid #faf63d ;
+
+}
+
+.turquesa{
+    background-color: #98e098;
+    border: 5px solid #31a931;
+
+}
+.morado{
+      background-color: #de76ee;
+    border: 5px solid #a515bb;
+}
