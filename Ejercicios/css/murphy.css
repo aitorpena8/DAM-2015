@@ -1,0 +1,89 @@
+body{
+    background-color: lightgray;
+    font-family: sans-serif;
+
+}
+
+h1{
+    text-align: center;
+
+}
+div{
+ padding: 3px 5px;
+}
+
+#ley1{
+
+    background-color: #dcd3a6;
+    border:2px solid #a59545;
+    width: 80%;
+    margin: 2% 10%;
+
+}
+
+#ley1 p{
+
+   text-align: center;
+
+}
+
+
+#ley2{
+
+    background-color: #ecdc8c;
+    border:2px solid #dbbc23;
+    width:30%;
+    height: 200px;
+    float:left;
+
+}
+
+
+#ley4{
+
+    background-color: #d7f6f9;
+    border:2px solid #37d3e1;
+    width:30%;
+    height: 200px;
+    position: absolute;
+    top: 3%;
+    left:30%;
+
+}
+
+
+
+#ley3{
+
+    background-color: #86e76e;
+    border:2px solid #32931a;
+    width:30%;
+    height: 200px;
+    float:right;
+
+}
+
+
+
+#ley5{
+
+    background-color: #d8bdf8;
+    border:2px solid #660cd4;
+    width:30%;
+    height: 200px;
+
+}
+
+
+#ley6{
+
+    background-color: ##ed9696;
+    border:2px solid #cb1a1a;
+    width:30%;
+    height: 200px;
+
+}
+
+
+
+
