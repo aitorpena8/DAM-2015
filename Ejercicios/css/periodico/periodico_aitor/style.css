@@ -1,7 +1,7 @@
 body {
     background-color: lightgray;
     color: #2e3d3d;
-    font-family: Oswald;
+    font-family: Oswald,sans-serif;
 }
 
 .wrapper {
