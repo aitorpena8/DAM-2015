@@ -7,7 +7,9 @@
      background-color: #eee;
      float: left;
      margin-top: 20px;
-     margin-right: 40px;
+     margin-right: 20px;
+     margin-left: 20px;
+     margin-bottom: 20px;
      height: 65px;
      width: 160px;
      text-align: center;
@@ -19,3 +21,37 @@
      position: relative;
      top: 20px;
  }
+
+.exampleboxshadowa{
+    box-shadow:-5px -5px darkgray;
+
+}
+
+.exampleboxshadowb{
+    box-shadow:-5px -5px 5px darkgray;
+
+}
+
+.exampleboxshadowc{
+    box-shadow:inset 7px 7px darkgray;
+
+}
+
+.exampleboxshadowd{
+    box-shadow:-7px -7px 2px darkgray;
+
+}
+
+.exampleboxshadowe{
+    box-shadow: -1px -1px 2px darkgray, 1px 1px 2px darkgray;
+
+}
+
+.exampleboxshadowf{
+    box-shadow: -2px -2px 4px 2px 2px 4px;
+
+}
+
+.exampleboxshadoj{
+    box-shadow: inset -10px -10px 10px 10px #777;
+}

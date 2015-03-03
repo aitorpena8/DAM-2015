@@ -1,0 +1,15 @@
+.examplemultiplebackgroundsa {
+    width: 500px;
+    height: 250px;
+    background-image: url(ribbon.png),url(decoration.png),url(old_paper.jpg);
+    background-position: right bottom, left top, center bottom;
+    background-repeat: no-repeat, no-repeat,no-repeat;
+}
+
+.examplemultiplebackgroundsa p {
+    float: right;
+    margin-right: 10px;
+    font-size: 14pt;
+    font-weight: bold;
+    font-family: Verdana;
+}
