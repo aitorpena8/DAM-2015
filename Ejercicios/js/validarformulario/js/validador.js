@@ -5,17 +5,16 @@ function validate_required(value) {
 }
 
 function validate_email(email) {
-    if (/^(\w+)((\.|-|_)(\w+))*@(\w+)(\.\w{2,})+$/.test(email)) {
-        return false;
-    }
-    return true;
+    if (/^(\w+)((\.|-|_)(\w+))*@(\w+)(\.\w{2,})+$/.test(email))
+        return true;
+    return false;
 }
 
 function validate_password(password) {
     var hasNumb = false;
     var hasUpper = false;
     var hasLower = false;
-    for (var i; i < password.length; i++) {
+    for (var i=0; i < password.length; i++) {
         var c = password[i];
         if (!isNaN(c))
             hasNumb = true;

@@ -1,28 +1,116 @@
-function showRequired(el, validate_func) {
-    var res=validate_func(el.value);
-
-    if (!res) {
-        var classAttr = document.createAttribute("className");
-        var req = document.createTextNode("required");
-        classAttr.appendChild(req);
-        el.appendChild(classAttr);
-    }
-    return res;
+function addClass(element, className) {
+    //var classAttr = document.createAttribute("class");
+    //classAttr.value=className;
+    element.className = className;
+    //element.setAttributeNode(classAttr);
 }
 
-function validar() {
+function removeClass(element) {
+    //var classAttr = document.createAttribute("class");
+    //classAttr.value=className;
+    element.className = '';
+    //element.setAttributeNode(classAttr);
+}
+
+function writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass) {
+
+    var msg = {
+
+        'reqNom': 'Nombre Requerido',
+        'reqEmail': 'Email Requerido',
+        'reqComm': 'Comentario Requerido',
+        'validEmail': 'El email introducido no es correcto',
+        'validComm': 'El Comentario no puede tener mas de 50 carateres',
+        'validPass': 'El pasword tiene que contener al menos un caracter numerico, una mayuscula y una minuscula'
+
+    };
+
+
+    var list = document.getElementById("expl");
+    if (list != undefined) {
+        document.getElementById("registro").removeChild(list);
+    }
+    var list = document.createElement("ul")
+    list.id = "expl";
+    var item, text;
+    if (!reqNom) {
+        item = document.createElement("li");
+        text = document.createTextNode(msg.reqNom)
+        item.appendChild(text);
+        list.appendChild(item);
+    }
+
+    if (!reqEmail) {
+        var item = document.createElement("li");
+        var text = document.createTextNode(msg.reqEmail)
+        item.appendChild(text);
+        list.appendChild(item);
+    } else if (!validEmail) {
+        var item = document.createElement("li");
+        var text = document.createTextNode(msg.validEmail)
+        item.appendChild(text);
+        list.appendChild(item);
+    }
+    if (!reqComm) {
+        item = document.createElement("li");
+        text = document.createTextNode(msg.reqComm)
+        item.appendChild(text);
+        list.appendChild(item);
+    } else if (!validComm) {
+        item = document.createElement("li");
+        text = document.createTextNode(msg.validComm)
+        item.appendChild(text);
+        list.appendChild(item);
+    }
+
+    if (!validPass) {
+        item = document.createElement("li");
+        text = document.createTextNode(msg.validPass)
+        item.appendChild(text);
+        list.appendChild(item);
+    }
+
+    document.getElementById("registro").appendChild(list);
+
+
+}
+
+function validar(event) {
+    //event.preventDefault();
+    console.log("b");
     var nombre = document.getElementById('registro_nombre');
-    var email = document.getElementById('registro_email').value;
-    var coment = document.getElementById('registro_email').value;
-    var password = document.getElementById('registro_password').value;
-    var reqNom=showRequired(nombre,validate_required);
-    var reqEmail=showRequired(email,validate_required);
-    var reqCom=showRequired(comment,validate_required);
-    var validEmail=showRequired(email,validate_email);
-    var validComment=showRequired(coment,validate_comment);
-    var validPassword=showRequired(password,validate_password);
-    if(!reqNom||!reqEmail||!reqCom||!validEmail||!validComment||!validPassword)
+    var email = document.getElementById('registro_email');
+    var comm = document.getElementById('registro_comentarios');
+    var pass = document.getElementById('registro_password');
+    var reqNom = validate_required(nombre.value);
+    if (!reqNom)
+        addClass(nombre, "miss");
+    else
+        removeClass(nombre);
+    var reqEmail = validate_required(email.value);
+    var validEmail = validate_email(email.value);
+
+    if (!reqEmail || !validEmail)
+        addClass(email, "miss");
+
+    else
+        removeClass(email);
+
+    var reqComm = validate_required(comm.value);
+    var validComm = validate_comment(comm.value);
+    if (!reqComm || !validComm)
+        addClass(comm, "miss");
+    else
+        removeClass(comm);
+    var validPass = validate_password(pass.value);
+    if (!validPass)
+        addClass(pass, "miss")
+    else
+        removeClass(pass, "miss");
+    if (!reqNom || !reqEmail || !reqComm || !validEmail || !validComm || !validPass) {
+        writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass);
         return false;
+    }
     return true;
 
 
@@ -30,3 +118,8 @@ function validar() {
 
 
 }
+document.body, onload = function () {
+    console.log("a");
+    var submit = document.querySelector("input[type=submit]");
+    submit.onclick = validar;
+};
