@@ -15,10 +15,11 @@ p.appendChild(textNode);
 document.body.appendChild(p);
 
 var sComp = 'http://prueba/';
+var sComp1 = 'http://prueba';
 
 var cont = 0;
 for (var i in links) {
-    if (links[i].href == sComp)
+    if (links[i].href == sComp || links[i].href == sComp1)
         cont++;
 }
 
