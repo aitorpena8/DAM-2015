@@ -12,7 +12,7 @@ function removeClass(element) {
     //element.setAttributeNode(classAttr);
 }
 
-function writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass) {
+function writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass, validChecked) {
 
     var msg = {
 
@@ -21,8 +21,8 @@ function writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, va
         'reqComm': 'Comentario Requerido',
         'validEmail': 'El email introducido no es correcto',
         'validComm': 'El Comentario no puede tener mas de 50 carateres',
-        'validPass': 'El pasword tiene que contener al menos un caracter numerico, una mayuscula y una minuscula'
-
+        'validPass': 'El pasword tiene que contener al menos un caracter numerico, una mayuscula y una minuscula',
+        'validChecked': 'Tienes que aceptar las condiciones'
     };
 
 
@@ -30,42 +30,48 @@ function writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, va
     if (list != undefined) {
         document.getElementById("registro").removeChild(list);
     }
-    var list = document.createElement("ul")
+    var list = document.createElement("ul");
     list.id = "expl";
     var item, text;
     if (!reqNom) {
         item = document.createElement("li");
-        text = document.createTextNode(msg.reqNom)
+        text = document.createTextNode(msg.reqNom);
         item.appendChild(text);
         list.appendChild(item);
     }
 
     if (!reqEmail) {
         var item = document.createElement("li");
-        var text = document.createTextNode(msg.reqEmail)
+        var text = document.createTextNode(msg.reqEmail);
         item.appendChild(text);
         list.appendChild(item);
     } else if (!validEmail) {
         var item = document.createElement("li");
-        var text = document.createTextNode(msg.validEmail)
+        var text = document.createTextNode(msg.validEmail);
         item.appendChild(text);
         list.appendChild(item);
     }
     if (!reqComm) {
         item = document.createElement("li");
-        text = document.createTextNode(msg.reqComm)
+        text = document.createTextNode(msg.reqComm);
         item.appendChild(text);
         list.appendChild(item);
     } else if (!validComm) {
         item = document.createElement("li");
-        text = document.createTextNode(msg.validComm)
+        text = document.createTextNode(msg.validComm);
         item.appendChild(text);
         list.appendChild(item);
     }
 
     if (!validPass) {
         item = document.createElement("li");
-        text = document.createTextNode(msg.validPass)
+        text = document.createTextNode(msg.validPass);
+        item.appendChild(text);
+        list.appendChild(item);
+    }
+    if (!validChecked) {
+        item = document.createElement("li");
+        text = document.createTextNode(msg.validChecked);
         item.appendChild(text);
         list.appendChild(item);
     }
@@ -82,6 +88,7 @@ function validar(event) {
     var email = document.getElementById('registro_email');
     var comm = document.getElementById('registro_comentarios');
     var pass = document.getElementById('registro_password');
+    var checkbox = document.getElementById('registro_password');
     var reqNom = validate_required(nombre.value);
     if (!reqNom)
         addClass(nombre, "miss");
@@ -104,11 +111,18 @@ function validar(event) {
         removeClass(comm);
     var validPass = validate_password(pass.value);
     if (!validPass)
-        addClass(pass, "miss")
+        addClass(pass, "miss");
     else
         removeClass(pass, "miss");
-    if (!reqNom || !reqEmail || !reqComm || !validEmail || !validComm || !validPass) {
-        writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass);
+
+    var validChecked = validate_checked(checkbox);
+    if (!validChecked)
+        addClass(checkbox, "miss");
+    else
+        removeClass(checkbox, "miss");
+
+    if (!reqNom || !reqEmail || !reqComm || !validEmail || !validComm || !validPass || !validChecked) {
+        writeErrorMessages(reqNom, reqEmail, reqComm, validEmail, validComm, validPass, validChecked);
         return false;
     }
     return true;

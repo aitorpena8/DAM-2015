@@ -35,3 +35,11 @@ function validate_comment(comment) {
         return false;
     return true;
 }
+
+function validate_checked(checkbox){
+    if(checkbox.checked)
+        return true;
+    else
+        return false;
+
+}
