@@ -78,7 +78,7 @@ window.onload = function () {
 
               };
               var parJSON = JSON.stringify(par);*/
-            var par = "login=" + encodeURI(login.value);
+            var par = "login=" + encodeURI(login.value)+"&nocache="+Math.random();
             peticionAjax("../servidor/compruebaDisponibilidadJSON.php", "POST", MostrarResultado, par);
             //net.CargadorContenidos("servidor/compruebaDisponibilidad.php", MostrarResultado, null, "POST", par, "application/x-www-form-urlencoded");
         }
