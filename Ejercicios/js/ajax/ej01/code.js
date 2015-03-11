@@ -61,7 +61,7 @@ function rellenarRecurso() {
 }
 
 function descargaArchivo() {
-    var file = "vegiesipsum.txt"
+    var file = "vegiesipsum.txt";
     var url = document.getElementById("recurso").value + file;
     cargaContenido(url, "GET", muestraContenido);
 }
