@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Formulario HTML5</title>
+    <link rel="stylesheet" href="style.css" />
+
+
+</head>
+
+<body>
+    <h1>Pagina Formulario</h1>
+
+    <form>
+        <fieldset>
+            <legend>Formulario HTML5</legend>
+            <label for="email">Email:</label>
+            <input type="email" name="email" id="email">
+            <br/>
+            <label for="url">URL:</label>
+            <input type="url" name="url" id="url">
+            <br/>
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date">
+            <br/>
+            <label for="date">Time:</label>
+            <input type="time" name="time" id="time">
+            <br/>
+
+            <label for="datetime">DateTime:</label>
+            <input type="datetime" name="datetime" id="datetime">
+            <br/>
+
+            <label for="month">Month:</label>
+            <input type="month" name="month" id="month">
+            <br/>
+
+
+            <label for="week">Week:</label>
+            <input type="week" name="week" id="week">
+            <br/>
+
+
+            <label for="number">Number:</label>
+            <input type="number" name="number" id="number">
+            <br/>
+
+            <label for="range">Range:</label>
+            <input type="range" name="range" id="range">
+            <br/>
+
+            <label for="tel">Tel.:</label>
+            <input type="tel" name="tel" id="tel">
+            <br/>
+
+            <label for="search">Search:</label>
+            <input type="search" name="seach" id="search">
+            <br/>
+
+            <label for="color">Color:</label>
+            <input type="color" name="color" id="color">
+            <br/>
+
+
+            <label for="week">List:</label>
+            <input type="text" name="list" id="list" list="opciones">
+            <br/>
+
+            <datalist id="opciones">
+                <option value="Amurrio" label="A" />
+                <option value="Bermeo" label="B" />
+                <option value="Donostia" label="C" />
+
+            </datalist>
+
+            <br/>
+
+            <label for="week">Af.Ph.Rq.Ac.:</label>
+            <input type="text" autocomplete="on" placeholder="a" required autofocus>
+
+            <br/>
+
+            <label for="number1_10">Number[1-10]:</label>
+            <input type="number1_10" name="number1_10" id="number1_10" min="1" max="10">
+
+            <br/>
+
+
+
+            <label for="file">Ficheros:</label>
+            <input type="file" name="file" id="file">
+            <br/>
+
+            <label for="password">Clave:</label>
+            <input type="password" name="password" id="password">
+            <br/>
+
+            <label for="progreso">Progreso:</label>
+            <progress name="progreso" id="progreso"></progress>
+            <br/>
+            <label for="submit">Validar</label>
+            <input type="submit">
+        </fieldset>
+    </form>
+    <script type="application/javascript" src="form.js"></script>
+
+</body>
+
+</html>

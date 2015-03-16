@@ -1,137 +1,128 @@
-//obeto global.
-
-//Usar "use strict".
-
-//esperar a que el DOM este cargado.
-
 var APP = APP || {};
-
 $(document).ready(function () {
     "use strict";
-    var fila;
-    var col;
+    console.log("main cargado");
 
+    var generalTimer = 0;
+    var timerInterval;
+    var cartas;
 
-    var timer = 0;
-    var imgPintadas = 0;
-    var imgEliminadas = 0;
-    var interval;
-    var imgNum;
+    var obtenerCartas = function (datos) {
+        var jsonObj = datos;
+        cartas = [];
+        for (var i = 0; i < jsonObj.length; i++) {
+            var carta = crearCarta(jsonObj[i].animal, jsonObj[i].color, jsonObj[i].nombre, jsonObj[i].timer);
+            cartas.push(carta);
+        }
+        $('#contenedor').empty().append(cartas);
+        timerInterval = setInterval(addSecond, 1000);
+    };
 
+    var addSecond = function () {
+        var listaCartas = cartas;
+        for (var i = 0; i < listaCartas.length; i++) {
+            if ($(listaCartas[i]).data('timer') < generalTimer) {
 
-    function eliminarImg() {
+                $(listaCartas[i]).addClass(listaCartas[i].data('color'));
+                $(listaCartas[i]).on("click", clickDeCarta);
+                listaCartas.splice(i, 1);
+            }
+        }
 
-        console.log(this);
-        var $im = $(this);
-        var $card = $im.parent();
-        var $container = $card.parent();
-        $card.remove();
-        var time = new Date();
-        var outStr = '[' + time.getHours() + ':' + time.getMinutes() + ':' + time.getSeconds() + '] ' + $im.data('name') + '. El  ' + $im.data('animal') + ' ' + $im.data('color') + ' ha sido eliminado';
-        var $p = $('<p/>', {
-            html: outStr
+        if (listaCartas.length > 0) {
+            console.log("Siguiente intervalo");
+            generalTimer++;
+        } else {
+            console.log("Fin del intervalo");
+            resetTimer();
+        }
+    }
+
+    var resetTimer = function () {
+        clearInterval(timerInterval);
+        generalTimer = 0;
+    }
+
+    var crearCarta = function (animal, color, nombre, timer) {
+        var card = ($('<img/>', {
+            'data-name': nombre,
+            'data-animal': (animal === "cat") ? "gato" : "perro",
+            'data-color': color,
+            'data-timer': timer,
+            src: "img/" + animal + ".png"
+        }));
+        card.css({
+            "width": (100 / $('#columnas').val()) + "%"
         });
-        $container = $('#eliminados');
-        if (imgEliminadas === 0)
-            $container.show();
-        $('#eliminados').append($p);
-        imgEliminadas++;
+        return card;
+    };
+
+
+    var clickDeCarta = function () {
+        var theClass = $(this).attr('class') + "Txt";
+        var ele = $('<p/>', {
+            'class': theClass
+        });
+        var d = new Date();
+        var time = ((d.getHours().toString().length === 1) ? "0" + d.getHours() : d.getHours()) + ":" +
+                   ((d.getMinutes().toString().length === 1) ? "0" + d.getMinutes() : d.getMinutes()) + ":" +
+                   ((d.getSeconds().toString().length === 1) ? "0" + d.getSeconds() : d.getSeconds());
+
+        ele.text("[" + time + "] " + $(this).data('name') + ". El " + $(this).data('animal') + " " + traducirColor($(this).data('color')));
+
+        $('#eliminados').append(ele);
+
+        $("#eliminados").animate({
+            scrollTop: $('#eliminados')[0].scrollHeight
+        }, 1000);
+
+        if ($(this).siblings().length === 0) {
+            $('#botones').children().last().removeClass('hidden');
+        }
+        this.remove();
     }
 
-    function check() {
-        var listaImgs = $('img');
-        var l = listaImgs.length;
-        for (var i = 0; i < l; i++) {
-            var $im = $(listaImgs[i]);
-            var c = $im.data('time');
-            //var c = im.attr('data-time');
-            if (c == timer) {
-                var co = $im.data('color');
-                if (!$im.hasClass('color')) {
-                    $im.addClass(co);
-                    $im.on('click', eliminarImg);
-                    imgPintadas++;
-            }
-
-            }
+    var traducirColor = function (s) {
+        var r;
+        switch (s) {
+        case "red":
+            r = "rojo";
+            break;
+        case "green":
+            r = "verde";
+            break;
+        case "blue":
+            r = "azul";
+            break;
+        case "yellow":
+            r = "amarillo";
+            break;
+        case "purple":
+            r = "morado";
+            break;
+        case "orange":
+            r = "naranja";
+            break;
+        case "black":
+            r = "negro";
+            break;
+        case "pink":
+            r = "rosa";
+            break;
         }
-        timer++;
-        if (imgPintadas == imgNum) {
-            clearInterval(interval);
-        }
-
+        return r;
     }
 
-
-    var pintarRespuesta = (function (data) {
-        console.log("pintarRespuesta");
-        console.log("JSON:" + data);
-
-        var imgWidth = 100 / col;
-        console.log('imgWidth: ' + imgWidth);
-        $('#botones').hide();
-
-        var $contenedor = $('#contenedor');
-        var arr = JSON.parse(data);
-        imgNum = arr.length;
-        interval = setInterval(check, 1000);
-        for (var i = 0; i < imgNum; i++) {
-
-            var item = arr[i];
-            var $card = $('<card/>', {
-                width: imgWidth + '%',
-            });
-
-
-            var $img = $('<img/>', {
-                src: 'img/' + item.animal + '.png',
-                width: imgWidth + '%',
-                'data-time': item.timer,
-                'data-color': item.color,
-                'data-animal': item.animal,
-                'data-name': item.nombre
-            });
-
-            $card.append($img);
-            $contenedor.append($card);
-
+    var realizarPeticion = function () {
+        var cantidad = ($('#filas').val() * $('#columnas').val());
+        console.log("CANTIDAD: " + cantidad);
+        if (cantidad > 0) {
+            $('#botones').children().addClass('hidden').end().siblings().removeClass('hidden');
+            APP.net.peticion(cantidad, obtenerCartas);
         }
-        $contenedor.show();
-    });
+    }
 
-
-    $('#carga').on('click', function () {
-
-        fila = $('#filas').val();
-        col = $('#columnas').val();
-        console.log("fila: " + fila + ", columna: " + col);
-        var numero = fila * col;
-        APP.net.peticion(numero, pintarRespuesta);
-    });
-
-
-
-
-
+    $('#carga').on('click', realizarPeticion);
+    $('#restart').on('click', realizarPeticion);
 
 });
-
-
-// Iniciaremos las variables privadas que sean necesarias.
-
-// Necesitaremos una funcion que cree objetos DOM de clase img y todos los atributos necesarios.
-// Necesitaremos una funcion que agrege el array de img al DOM (no se realizaran cambios de DOM dentro de ningun bucle).
-
-// Necesitaremos una o varias funcion(es) que controle(n) el paso del tiempo.
-
-// Necesitaremos añadir los eventos necesarios en el momento adecuado.
-
-// Necesitaremos las funciones de callback para los eventos.
-
-// Necesitaremos una funcion encargada de llamar al modulo que se define en el fichero net.js con los parametros adecuados para realizar la llamada y capturar la respuesta AJAX.
-
-// Necesitaremos una funcion que controle el final del juego.
-
-// Necesitaremos una funcion que controle la lista de eliminados.
-
-// Cualquier otra funcion que sea necesaria.
