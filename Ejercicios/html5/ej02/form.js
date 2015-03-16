@@ -1,24 +1,30 @@
 window.onload = function () {
     "use strict";
 
+    function countValids() {
+        var count = 0;
+        for (var f in valids) {
 
+                   // console.log(f + ":" + f.valid);
+
+            if (valids[f]) {
+                count++;
+            }
+        }
+        return count;
+
+    }
 
     function updateProgressBar() {
-        console.log(this.name+":"+this.value);
+
         var pBar = document.getElementById("progreso");
-        if (this.willValidate) {
-            if (valids < l) {
-                valids++;
-            }
 
-        } else {
-            if (valids > 0) {
-                valids--;
-            }
+        valids[this.name] = this.checkValidity();
+        console.log(this.name + ":" + this.checkValidity());
 
-        }
-        pBar.value = valids;
-        console.log("Valids="+valids+", Pbar.value="+pBar.value);
+
+        pBar.value = countValids();
+        console.log("pBar.value=" + pBar.value);
 
 
     }
@@ -29,14 +35,17 @@ window.onload = function () {
     var pBar = document.getElementById("progreso");
     pBar.max = l - 1;
     pBar.value = 0;
-    var valids = 0;
+    var valids = {};
 
 
 
 
     for (var i = 0; i < l; i++) {
         var field = inputs[i];
-        field.addEventListener("blur", updateProgressBar);
+        if (field.type !== "submit") {
+            field.addEventListener("blur", updateProgressBar);
+            valids[field.name] = false;
+        }
 
     }
 
