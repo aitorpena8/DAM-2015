@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <title>Video</title>
+
+</head>
+
+<body>
+    <video id="video1" name="video1">
+
+    <source src="rsrc/Izaki%20Gardenak%20-%20Ene%20begiek.mp4" type="video/mp4" poster="rsrc/frame.png"></video>
+    <div id="video_controls">
+        <form>
+            <input type="button" id="iniciar" value="Inciar" />
+            <input type="button" id="pausar" value="Pausa" />
+            <input type="button" id="parar" value="Parar" />
+            <input type="button" id="avanzar" value="Avanzar" />
+            <input type="button" id="retroceder" value="Retroceder" />
+            <input type="button" id="inicio" value="Incio" />
+            <input type="button" id="fin" value="Fin" />
+            <input type="button" id="pcompleta" value="Pantalla Completa" />
+            <input type="range" id="volumen" name="volumen" min="0" max="10" />
+            <progress name="progreso" id="progreso" value="0" max="100"></progress>
+        </form>
+    </div>
+    <script type="application/javascript" src="js/videoplayer.js"></script>
+
+
+
+</body>
+
+</html>
