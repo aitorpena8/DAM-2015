@@ -2,9 +2,12 @@ $(document).ready(function () {
     "use strict";
     var dragSrcEl = null;
 
-    function handleDragStart() {
+    function handleDragStart(e) {
+
         console.log("dragStart");
-        dragSrcEl = this;
+        dragSrcEl = $(this).parent().html();
+        e.originalEvent.dataTransfer.effectAllowed = 'move';
+        e.originalEvent.dataTransfer.setData('html', dragSrcEl);
         $(this).addClass("dragging");
 
 
@@ -41,11 +44,19 @@ $(document).ready(function () {
 
     }
 
+    function allowDrop(e) {
+        e.preventDefault();
+
+
+    }
+
     function handleDrop(e) {
         e.preventDefault();
         e.stopPropagation();
         console.log("Drop");
-        this.innerHTML = e.dataTransfer.getData('text/html');
+        var html = e.originalEvent.dataTransfer.getData('html');
+        console.log(html);
+        this.innerHTML+=html;
         return false;
 
 
@@ -61,6 +72,8 @@ $(document).ready(function () {
 
     $('#drop').on('dragenter', handleDragEnter);
     $('#drop').on('dragleave', handleDragLeave);
+    $('#drop').on('dragover', allowDrop);
+
     $('#drop').on('drop', handleDrop);
 
 

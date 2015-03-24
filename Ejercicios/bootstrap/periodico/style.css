@@ -1,0 +1,179 @@
+body {
+    background-color: lightgray;
+    color: #2e3d3d;
+    font-family: Oswald,sans-serif;
+}
+
+.wrapper {
+    width: 1000px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 5px 8px;
+}
+
+.header {
+    width: 960px;
+    height: 50px;
+    border-top: 2px solid maroon;
+    border-bottom: 2px solid maroon;
+
+    padding-bottom: 20px;
+    margin: 20px auto;
+}
+
+h1 {
+    text-align: center;
+    font-family: sans-serif;
+    letter-spacing: 2px;
+    color:gold;
+}
+
+.links {
+    width: 80px;
+    margin-top: 38px;
+    padding: 10px 8px;
+    height: 500px;
+    border: 1px solid black;
+}
+
+.links a {
+    display: block;
+    color:#e84d2a;
+    text-align: center;
+    font-family: cursive;
+    text-decoration: none;
+}
+
+.links a:hover{
+    color:##9c2a10;
+}
+
+.featured {
+    width: 760px;
+    border: 2px ridge red;
+    padding: 5px 10px;
+    margin: 0px 8px 5px 8px;
+}
+
+.news {
+    width: 760px;
+    padding: 5px 8px;
+    border: 2px ridge blue;
+    margin: 5px 8px;
+}
+
+.featured div div {
+    float: left;
+    margin: 0px 5px;
+}
+
+.featured div div img {
+    margin: 2px 2px 0 2px;
+}
+
+.news div{
+/*    margin-top: 20px;*/
+    border-bottom: #401106;
+
+}
+
+.news div div {
+/*    width: 60px;*/
+    float: left;
+    margin: 0px 8px;
+}
+
+.news div div img {
+    margin: 2px 2px 0 2px;
+}
+
+.imgfooter {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: .6em;
+    text-align: center;
+    font-style: italic;
+    font-weight: lighter;
+}
+
+.news div p {
+    text-indent: 5px;
+}
+
+.news+div p:first-letter {
+    font-size: 130%;
+}
+
+h2 {
+    text-decoration: underline;
+    margin-bottom: px;
+}
+
+h3 {
+    margin-bottom: 3px;
+}
+
+ul.menu {
+    list-style: none;
+    width: 760px;
+    margin: 5px 8px 0px 8px;
+}
+
+ul.menu li {
+    margin-left: 5px;
+    width: 100px;
+    display: inline-block;
+    padding-left: 0;
+}
+
+ul.menu li a {
+    width: 100px;
+    height: 30px;
+    padding-top: 8px;
+    padding-left: 3px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    text-decoration: none;
+    background-color: #ee7838;
+    color: white;
+    text-align: center;
+    display: block;
+    font-weight: bold;
+}
+
+ul.menu li a:hover {
+    background-color:#a1400c;
+}
+
+.fleft {
+    float: left;
+}
+
+.fright {
+    float: right;
+}
+
+.footer {
+    width: 1000px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    clear: both;
+}
+
+.footer p {
+    font-style: italic;
+    text-align: center;
+}
+
+.pics {
+    width: 90px;
+    height: 120px;
+    margin: 20px 5px;
+    padding: 0;
+}
+
+.ads {
+    width: 90px;
+    margin: 20px 5px;
+    padding: 0;
+}

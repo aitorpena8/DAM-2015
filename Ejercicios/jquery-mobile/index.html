@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Configuración</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximun-scale=1">
+    <link rel="stylesheet" href="lib/vendor/jquery.mobile.icons-1.4.5.min.css" />
+    <link rel="stylesheet" href="lib/vendor/jquery.mobile-1.4.5.min.css" />
+    <script src="lib/vendor/jquery-1.11.2.min.js"></script>
+    <script src="lib/vendor/jquery.mobile-1.4.5.min.js"></script>
+</head>
+
+<body>
+    <div id="page1" data-role="page" data-theme="a" data-title="Configuracion 1">
+
+
+        <div data-role="header">
+                  <a href="#" class="ui-btn ui-icon-gear">Configuración</a>
+        </div>
+
+        <div data-role="content">
+            <p>Esta es la pagina de configuración</p>
+            <ul data-role="listview" data-inset="true" data-filter="true">
+                <li><a class="sel" id="sel1" href="#">Seleccion 1</a>
+                </li>
+
+                <li><a class="sel" id="sel2" href="#">Seleccion 2</a>
+                </li>
+                <li><a class="sel" id="sel3" href="#">Seleccion 3</a>
+                </li>
+            </ul>
+            <p id="selRes"></p>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a href="#page2" class="ui-btn ui-shadow ui-btn-corner-all" data-transition="pop"><span class="ui-btn-inner"><span class="ui-btn-text">A página 2</span></span></a>
+                </div>
+
+                <div class="ui-block-b">
+                    <a href="./dialog.html" class="ui-btn ui-shadow ui-btn-corner-all" data-rel="dialog"><span class="ui-btn-inner"><span class="ui-btn-text">Dialogo</span></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="page2" data-role="page" data-theme="d" data-title="Configuracion 2">
+
+
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-icon-gear ui-btn-icon-right">Configuración 2</a>
+        </div>
+
+        <div data-role="content">
+
+            <form>
+
+
+                <label for="slider1"></label>
+                <input type="range" name="slider" id="slider1" min="0" value="25" max="100">
+
+
+
+            </form>
+
+            <a data-rel="back" class="ui-btn ui-shadow ui-btn-corner-all" data-transition="pop"><span class="ui-btn-inner"><span class="ui-btn-text">A página 1</span></span></a>
+
+        </div>
+    </div>
+
+
+    <script type="application/javascript" src="lib/app/main.js"></script>
+
+</body>
+
+</html>
