@@ -133,6 +133,7 @@ function validar(event) {
 
 }
 document.body, onload = function () {
+    "use strict";
     console.log("a");
     var submit = document.querySelector("input[type=submit]");
     submit.onclick = validar;
